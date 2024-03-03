@@ -11,15 +11,17 @@ export default function Navbar() {
 
 
     async function getcart() {
-        let res = await axios.get("https://ecommerce.routemisr.com/api/v1/cart", {
-            headers: {
-                token: userData
+        try {
+            let res = await axios.get("https://ecommerce.routemisr.com/api/v1/cart", {
+                headers: {
+                    token: userData
+                }
             }
-        }
 
-        )
-        setnumOfCartItems(res.data.numOfCartItems)
-        setCart(res.data.data)
+            )
+            setnumOfCartItems(res.data.numOfCartItems)
+            setCart(res.data.data)
+        } catch (e) { console.log(e); }
     }
 
     useEffect(() => {
@@ -29,8 +31,9 @@ export default function Navbar() {
     let navgate = useNavigate()
     function logOut() {
         setUserData(null)
-        localStorage.setItem("userToken", null)
+        localStorage.setItem("Token", null)
         navgate("/login")
+        // numOfCartItems(0)
     }
     return (
         <>

@@ -68,7 +68,7 @@ export default function ProductDetails() {
             <div className=' container  '>
                 <div className='row g-3 pt-5 align-items-center'>
 
-                    <div className='col-4 position-relative'>
+                    <div className='col-md-4 position-relative'>
                         <OwlCarousel items={1} loop dots={true}>
                             {ProductDetails.images.map((el)=>{
                                 return <div className='item'><img src={el} alt="" className='w-100' /></div>
@@ -77,7 +77,7 @@ export default function ProductDetails() {
                         </OwlCarousel>
 
                     </div>
-                    <div className='col-8'>
+                    <div className='col-md-8'>
                         <h3>{ProductDetails.title}</h3>
                         <p>{ProductDetails.description}</p>
                         <div className=' d-flex  justify-content-between'>

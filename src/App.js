@@ -30,12 +30,13 @@ export default function App() {
               path: "proudcts", element: <ProtectedRouting><Product></Product></ProtectedRouting>
             },
             { path: "proudctsDetails/:id", element: <ProductDetails></ProductDetails> },
-            { path: "cart", element: <Cart></Cart> },
-            { path: "brands", element: <Brands></Brands> },
+            {
+              path: "cart", element: <ProtectedRouting><Cart></Cart></ProtectedRouting> },
+            { path: "brands", element: <ProtectedRouting><Brands></Brands></ProtectedRouting> },
             { path: "login", element: <Login /> },
             { path: "register", element: <Register /> },
             { path: "wishlist", element: <WishList></WishList> },
-            { path: "categories", element: <Categories /> },
+            { path: "categories", element: <ProtectedRouting><Categories /></ProtectedRouting> },
             { path: "*", element: <NotFound></NotFound> },
           ]
       }
