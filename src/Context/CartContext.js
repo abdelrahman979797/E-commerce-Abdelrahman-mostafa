@@ -1,18 +1,20 @@
 import axios from "axios"
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 
 export let CartConText = createContext()
 
 export function CartConTextProvider({ children }) {
 
-    let [numOfCartItems, setnumOfCartItems] = useState()
+    
 
+    let [numOfCartItems, setnumOfCartItems] = useState(0)
+
+    let [cart,setCart] = useState([])
 
     function addCart(id) {
         let options = {
             headers: {
                 token: localStorage.getItem("Token"),
-
             }
         }
         console.log(options);
@@ -25,7 +27,7 @@ export function CartConTextProvider({ children }) {
     }
 
 
-    return <CartConText.Provider value={{ numOfCartItems, setnumOfCartItems , addCart }} >
+    return <CartConText.Provider value={{ numOfCartItems, setnumOfCartItems, addCart, setCart, cart }} >
         {children}
     </CartConText.Provider>
 

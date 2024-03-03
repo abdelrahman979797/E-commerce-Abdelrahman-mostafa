@@ -2,11 +2,29 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import img1 from "../../assets/images/freshcart-logo.svg"
 import { UserContext } from '../../Context/ContextUser'
+import { CartConText } from '../../Context/CartContext'
+import axios from 'axios'
 export default function Navbar() {
     let { userData, setUserData } = useContext(UserContext)
-    let { numOfCartItems } = useContext(UserContext)
+    let { numOfCartItems, setnumOfCartItems, setCart } = useContext(CartConText)
     let [data, setData] = useState(null)
 
+
+    async function getcart() {
+        let res = await axios.get("https://ecommerce.routemisr.com/api/v1/cart", {
+            headers: {
+                token: userData
+            }
+        }
+
+        )
+        setnumOfCartItems(res.data.numOfCartItems)
+        setCart(res.data.data)
+    }
+
+    useEffect(() => {
+        if (userData) { getcart() }
+    }, [userData])
 
     let navgate = useNavigate()
     function logOut() {
@@ -46,9 +64,9 @@ export default function Navbar() {
 
                         </ul>
                         <ul className='navbar-nav ms-auto'>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to='cart'><i className=' fa-solid fa-cart-shopping '></i></NavLink>
-                                {numOfCartItems}
+                            <li className="nav-item position-relative">
+                                <NavLink className="nav-link" to='cart'><i className=' fa-solid fa-cart-shopping  '></i></NavLink>
+                                <span className=' position-absolute  top-0  end-100 bg-main rounded-5 p-1'>{numOfCartItems}</span>
                             </li>
 
 

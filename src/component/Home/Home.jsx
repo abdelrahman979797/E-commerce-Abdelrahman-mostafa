@@ -19,9 +19,9 @@ export default function Home() {
 
     async function addToUserCart(id) {
         let req = await addCart(id)
+        console.log(id);
         if (req.data.status === 'success') {
-
-            setnumOfCartItems(req.data.setnumOfCartItems)
+            setnumOfCartItems(req.data.numOfCartItems)
 
             const Toast = Swal.mixin({
                 toast: true,
@@ -53,28 +53,6 @@ export default function Home() {
     return (<>
         <ManeSlider></ManeSlider>
         <div className=' container' >
-            <template id="my-template">
-                <swal-title>
-                    Save changes to "Untitled 1" before closing?
-                </swal-title>
-                <swal-icon type="warning" color="red"></swal-icon>
-                <swal-button type="confirm">
-                    Save As
-                </swal-button>
-                <swal-button type="cancel">
-                    Cancel
-                </swal-button>
-                <swal-button type="deny">
-                    Close without Saving
-                </swal-button>
-                <swal-param name="allowEscapeKey" value="false" />
-                <swal-param
-                    name="customClass"
-                    value='{ "popup": "my-popup" }' />
-                <swal-function-param
-                    name="didOpen"
-                    value="popup => console.log(popup)" />
-            </template>
             <div className='row g-5'>
                 {productlist.map((el) => {
                     return <div className=' col-md-3' key={el.id}>
