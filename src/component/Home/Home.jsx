@@ -17,6 +17,19 @@ export default function Home() {
 
     let { addCart, setnumOfCartItems } = useContext(CartConText)
 
+
+
+    function getProduct() {
+        return axios.get('https://ecommerce.routemisr.com/api/v1/products')
+    }
+    let { data, isLoading } = useQuery('productApi', getProduct)
+    if (isLoading) {
+        return <Loader></Loader>
+    }
+    const productlist = data.data.data
+
+
+
     async function addToUserCart(id) {
         let req = await addCart(id)
         console.log(id);
@@ -25,7 +38,7 @@ export default function Home() {
 
             const Toast = Swal.mixin({
                 toast: true,
-                position: "top-end",
+                position: "top-start",
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
@@ -41,15 +54,6 @@ export default function Home() {
         }
         console.log(req);
     }
-
-    function getProduct() {
-        return axios.get('https://ecommerce.routemisr.com/api/v1/products')
-    }
-    let { data, isLoading } = useQuery('productApi', getProduct)
-    if (isLoading) {
-        return <Loader></Loader>
-    }
-    const productlist = data.data.data
     return (<>
         <ManeSlider></ManeSlider>
         <div className=' container' >
