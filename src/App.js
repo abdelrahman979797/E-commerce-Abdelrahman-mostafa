@@ -40,18 +40,18 @@ export default function App() {
           ]
       }
     ]
-    , { basename: "/E-commerce-Abdelrahman-mostafa/"}
-    )
+    , { basename: "/E-commerce-Abdelrahman-mostafa/" }
+  )
   return (
     <>
-          <QueryClientProvider client={QueryClients}>
+      <QueryClientProvider client={QueryClients}>
         <UserContextProvider>
           <CartConTextProvider>
             <RouterProvider router={Route}>
             </RouterProvider>
           </CartConTextProvider>
-          </UserContextProvider>
-          </QueryClientProvider>
+        </UserContextProvider>
+      </QueryClientProvider>
 
 
     </>
