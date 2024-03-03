@@ -7,7 +7,7 @@ import Loader from '../Loader/Loader'
 import ManeSlider from '../ManeSlider/ManeSlider'
 import { CartConText } from '../../Context/CartContext'
 import Swal from 'sweetalert2'
-// import swal from 'sweetalert2/dist/sweetalert2.all'
+
 
 
 
